@@ -95,28 +95,6 @@ const Sidebar = () => {
               <span className="text-lg hidden md:block">Products</span>
             </Link>
           </li>
-
-          {/* Notifications */}
-          <li className="flex justify-center md:justify-start">
-            <Link
-              to="/notifications"
-              className={`flex gap-3 items-center ${isActive('/notifications') ? 'bg-[#34495E]' : 'hover:bg-[#34495E]'} text-white transition-all rounded-lg duration-300 py-2 pl-3 pr-5 max-w-fit cursor-pointer`}
-            >
-              <IoNotifications className="w-6 h-6 text-orange-200" />
-              <span className="text-lg hidden md:block">Notifications</span>
-            </Link>
-          </li>
-
-          {/* Profile */}
-          <li className="flex justify-center md:justify-start">
-            <Link
-              to={`/profile/${authUser?.username}`}
-              className={`flex gap-3 items-center ${isActive(`/profile/${authUser?.username}`) ? 'bg-[#34495E]' : 'hover:bg-[#34495E]'} text-white transition-all rounded-lg duration-300 py-2 pl-3 pr-5 max-w-fit cursor-pointer`}
-            >
-              <FaUser className="w-6 h-6 text-green-200" />
-              <span className="text-lg hidden md:block">Profile</span>
-            </Link>
-          </li>
         </ul>
 
         {/* Profile Section */}

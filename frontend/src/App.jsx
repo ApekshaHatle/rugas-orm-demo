@@ -1,9 +1,10 @@
 import { Navigate, Route,Routes} from 'react-router-dom'
-import HomePage from './pages/home/HomePage'
+import HomePage from './pages/home/Dashboard'
 import SignUpPage from './pages/auth/signup/SignUpPage'
 import LoginPage from './pages/auth/login/LoginPage'
 import NotificationPage from './pages/notification/NotificationPage'
 import ProfilePage from './pages/profile/ProfilePage'
+//import OrdersPage from './pages/orders/OrdersPage'
 
 import Sidebar from './components/common/Sidebar'
 import RightPanel from './components/common/RightPanel'
@@ -51,8 +52,9 @@ if(isLoading) {
         <Route path='/signup' element={!authUser ?  <SignUpPage/> : <Navigate to="/" /> }/>
         <Route path='/notifications' element={authUser ? <NotificationPage/> : <Navigate to="/login" />}/>
         <Route path='/profile/:username' element={authUser ? <ProfilePage/>  : <Navigate to="/login" />}/>
+        {/* <Route path='/orders' element={authUser ? <OrdersPage/> : <Navigate to="/login" />}/> */}
       </Routes>
-      {authUser && <RightPanel />}
+      {/* {authUser && <RightPanel />} */}
       <Toaster/>
     </div>
   )

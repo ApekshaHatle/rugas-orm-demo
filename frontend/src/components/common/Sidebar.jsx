@@ -1,13 +1,14 @@
 import logo1 from "../../assets/logo1.png";
-import { MdHomeFilled } from "react-icons/md";
+import { MdHomeFilled, MdDashboard, MdShoppingCart, MdInventory, MdPeople, MdAnalytics } from "react-icons/md";
 import { IoNotifications } from "react-icons/io5";
 import { FaUser } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { BiLogOut } from "react-icons/bi";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 const Sidebar = () => {
+  const location = useLocation();
   const queryClient = useQueryClient();
   const { mutate: logout } = useMutation({
     mutationFn: async () => {
@@ -33,6 +34,10 @@ const Sidebar = () => {
 
   const { data: authUser } = useQuery({ queryKey: ["authUser"] });
 
+  const isActive = (path) => {
+    return location.pathname === path;
+  };
+
   return (
     <div className="md:flex-[2_2_0] w-32 max-w-64 ml-0 pl-6 min-w-[220px]">
       <div className="sticky top-0 left-0 h-screen flex flex-col border-r border-gray-200 w-20 md:w-full bg-[#2C3E50] shadow-lg">
@@ -47,30 +52,88 @@ const Sidebar = () => {
 
         {/* Navigation Links */}
         <ul className="flex flex-col gap-4 mt-4">
+          {/* Dashboard */}
           <li className="flex justify-center md:justify-start">
             <Link
               to="/"
-              className="flex gap-3 items-center hover:bg-[#34495E] text-white transition-all rounded-lg duration-300 py-2 pl-3 pr-5 max-w-fit cursor-pointer"
+              className={`flex gap-3 items-center ${isActive('/') ? 'bg-[#34495E]' : 'hover:bg-[#34495E]'} text-white transition-all rounded-lg duration-300 py-2 pl-3 pr-5 max-w-fit cursor-pointer`}
             >
-              <MdHomeFilled className="w-6 h-6 text-blue-200" />
-              <span className="text-lg hidden md:block">Home</span>
+              <MdDashboard className="w-6 h-6 text-blue-200" />
+              <span className="text-lg hidden md:block">Dashboard</span>
             </Link>
           </li>
 
+          {/* Orders */}
+          <li className="flex justify-center md:justify-start">
+            <Link
+              to="/orders"
+              className={`flex gap-3 items-center ${isActive('/orders') ? 'bg-[#34495E]' : 'hover:bg-[#34495E]'} text-white transition-all rounded-lg duration-300 py-2 pl-3 pr-5 max-w-fit cursor-pointer`}
+            >
+              <MdShoppingCart className="w-6 h-6 text-green-200" />
+              <span className="text-lg hidden md:block">Orders</span>
+            </Link>
+          </li>
+
+          {/* Customers */}
+          <li className="flex justify-center md:justify-start">
+            <Link
+              to="/customers"
+              className={`flex gap-3 items-center ${isActive('/customers') ? 'bg-[#34495E]' : 'hover:bg-[#34495E]'} text-white transition-all rounded-lg duration-300 py-2 pl-3 pr-5 max-w-fit cursor-pointer`}
+            >
+              <MdPeople className="w-6 h-6 text-yellow-200" />
+              <span className="text-lg hidden md:block">Customers</span>
+            </Link>
+          </li>
+
+          {/* Products */}
+          <li className="flex justify-center md:justify-start">
+            <Link
+              to="/products"
+              className={`flex gap-3 items-center ${isActive('/products') ? 'bg-[#34495E]' : 'hover:bg-[#34495E]'} text-white transition-all rounded-lg duration-300 py-2 pl-3 pr-5 max-w-fit cursor-pointer`}
+            >
+              <MdInventory className="w-6 h-6 text-purple-200" />
+              <span className="text-lg hidden md:block">Products</span>
+            </Link>
+          </li>
+
+          {/* Reports */}
+          <li className="flex justify-center md:justify-start">
+            <Link
+              to="/reports"
+              className={`flex gap-3 items-center ${isActive('/reports') ? 'bg-[#34495E]' : 'hover:bg-[#34495E]'} text-white transition-all rounded-lg duration-300 py-2 pl-3 pr-5 max-w-fit cursor-pointer`}
+            >
+              <MdAnalytics className="w-6 h-6 text-red-200" />
+              <span className="text-lg hidden md:block">Reports</span>
+            </Link>
+          </li>
+
+          {/* Community */}
+          <li className="flex justify-center md:justify-start">
+            <Link
+              to="/community"
+              className={`flex gap-3 items-center ${isActive('/community') ? 'bg-[#34495E]' : 'hover:bg-[#34495E]'} text-white transition-all rounded-lg duration-300 py-2 pl-3 pr-5 max-w-fit cursor-pointer`}
+            >
+              <MdHomeFilled className="w-6 h-6 text-blue-200" />
+              <span className="text-lg hidden md:block">Community</span>
+            </Link>
+          </li>
+
+          {/* Notifications */}
           <li className="flex justify-center md:justify-start">
             <Link
               to="/notifications"
-              className="flex gap-3 items-center hover:bg-[#34495E] text-white transition-all rounded-lg duration-300 py-2 pl-3 pr-5 max-w-fit cursor-pointer"
+              className={`flex gap-3 items-center ${isActive('/notifications') ? 'bg-[#34495E]' : 'hover:bg-[#34495E]'} text-white transition-all rounded-lg duration-300 py-2 pl-3 pr-5 max-w-fit cursor-pointer`}
             >
               <IoNotifications className="w-6 h-6 text-orange-200" />
               <span className="text-lg hidden md:block">Notifications</span>
             </Link>
           </li>
 
+          {/* Profile */}
           <li className="flex justify-center md:justify-start">
             <Link
               to={`/profile/${authUser?.username}`}
-              className="flex gap-3 items-center hover:bg-[#34495E] text-white transition-all rounded-lg duration-300 py-2 pl-3 pr-5 max-w-fit cursor-pointer"
+              className={`flex gap-3 items-center ${isActive(`/profile/${authUser?.username}`) ? 'bg-[#34495E]' : 'hover:bg-[#34495E]'} text-white transition-all rounded-lg duration-300 py-2 pl-3 pr-5 max-w-fit cursor-pointer`}
             >
               <FaUser className="w-6 h-6 text-green-200" />
               <span className="text-lg hidden md:block">Profile</span>
@@ -86,7 +149,7 @@ const Sidebar = () => {
           >
             <div className="avatar hidden md:inline-flex">
               <div className="w-8 rounded-full">
-                <img src={authUser?.profileImg || "/avatar-placeholder.png"} />
+                <img src={authUser?.profileImg || "/avatar-placeholder.png"} alt="Profile" />
               </div>
             </div>
             <div className="flex justify-between flex-1">

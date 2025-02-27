@@ -28,7 +28,7 @@ export const createOrder = async (req, res) => {
 
 export const getOrders = async (req, res) => {
   try {
-    const { status, customerId, category } = req.query;
+    const { status, customerId, category, limit } = req.query;
     
     const query = { createdBy: req.user._id };
     
@@ -40,10 +40,13 @@ export const getOrders = async (req, res) => {
       };
     }
 
+    const limitValue = limit ? parseInt(limit, 10) : undefined;
+
     const orders = await Order.find(query)
       .populate('customer')
-      .populate('products.product');
-      
+      .populate('products.product')
+      .limit(limitValue); // Apply limit
+    
     res.status(200).json(orders);
   } catch (error) {
     res.status(500).json({ error: error.message });

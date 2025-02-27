@@ -39,7 +39,7 @@ const HomePage = () => {
     queryKey: ["recentOrders"],
     queryFn: async () => {
       try {
-        const res = await fetch("/api/orders?limit=5");
+        const res = await fetch("/api/orders");
         if (!res.ok) {
           throw new Error("Failed to fetch recent orders");
         }

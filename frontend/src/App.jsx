@@ -4,7 +4,9 @@ import SignUpPage from './pages/auth/signup/SignUpPage'
 import LoginPage from './pages/auth/login/LoginPage'
 import NotificationPage from './pages/notification/NotificationPage'
 import ProfilePage from './pages/profile/ProfilePage'
-//import OrdersPage from './pages/orders/OrdersPage'
+import OrdersPage from './pages/orders/OrdersPage'
+import CustomerPage from './pages/customers/CustomerPage'
+import ProductPage from './pages/products/ProductPage'
 
 import Sidebar from './components/common/Sidebar'
 import RightPanel from './components/common/RightPanel'
@@ -52,7 +54,9 @@ if(isLoading) {
         <Route path='/signup' element={!authUser ?  <SignUpPage/> : <Navigate to="/" /> }/>
         <Route path='/notifications' element={authUser ? <NotificationPage/> : <Navigate to="/login" />}/>
         <Route path='/profile/:username' element={authUser ? <ProfilePage/>  : <Navigate to="/login" />}/>
-        {/* <Route path='/orders' element={authUser ? <OrdersPage/> : <Navigate to="/login" />}/> */}
+        <Route path='/orders' element={authUser ? <OrdersPage/> : <Navigate to="/login" />}/>
+        <Route path='/customers' element={authUser ? <CustomerPage/> : <Navigate to="/login" />}/>
+        <Route path='/products' element={authUser ? <ProductPage/> : <Navigate to="/login" />}/>
       </Routes>
       {/* {authUser && <RightPanel />} */}
       <Toaster/>

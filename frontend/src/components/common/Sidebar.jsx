@@ -96,28 +96,6 @@ const Sidebar = () => {
             </Link>
           </li>
 
-          {/* Reports */}
-          <li className="flex justify-center md:justify-start">
-            <Link
-              to="/reports"
-              className={`flex gap-3 items-center ${isActive('/reports') ? 'bg-[#34495E]' : 'hover:bg-[#34495E]'} text-white transition-all rounded-lg duration-300 py-2 pl-3 pr-5 max-w-fit cursor-pointer`}
-            >
-              <MdAnalytics className="w-6 h-6 text-red-200" />
-              <span className="text-lg hidden md:block">Reports</span>
-            </Link>
-          </li>
-
-          {/* Community */}
-          <li className="flex justify-center md:justify-start">
-            <Link
-              to="/community"
-              className={`flex gap-3 items-center ${isActive('/community') ? 'bg-[#34495E]' : 'hover:bg-[#34495E]'} text-white transition-all rounded-lg duration-300 py-2 pl-3 pr-5 max-w-fit cursor-pointer`}
-            >
-              <MdHomeFilled className="w-6 h-6 text-blue-200" />
-              <span className="text-lg hidden md:block">Community</span>
-            </Link>
-          </li>
-
           {/* Notifications */}
           <li className="flex justify-center md:justify-start">
             <Link
